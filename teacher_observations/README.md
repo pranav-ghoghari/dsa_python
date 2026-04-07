@@ -1,12 +1,17 @@
 # Teacher Observations
 
-This folder tracks what has been observed about the student's current coding ability.
+This directory stores dated historical evidence logs.
 
-These notes are based on:
+Session notes live in `sessions/`.
 
-- how the student describes their thinking
-- what they can infer from code they read
-- what they cannot yet express in valid Python syntax
-- later, the code they write and the mistakes they make
+Use this area for:
 
-The goal is to teach from evidence, not vibes.
+- what happened in a specific session or review
+- what code or test evidence appeared
+- what teaching implication followed at that time
+
+These notes are append-oriented and historical.
+
+They are not the sole source of current truth.
+
+Major conclusions should be reflected in `teacher_state/`, which holds the maintained current model of the student.

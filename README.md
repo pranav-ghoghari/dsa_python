@@ -1,22 +1,41 @@
-# Python Fundamentals Tutor
+# Python Teaching Memory Repo
 
-This repo is now set up as a deliberate-practice workspace for Python.
+This repository supports an ongoing Python tutoring workflow.
 
-The first step is a baseline assessment so we can stop guessing about your skill level and see what you can actually do on your own.
+It separates raw student evidence from a maintained teacher wiki so future sessions can start from current knowledge instead of scattered notes.
 
-## Start Here
+## Repo Structure
 
-1. Read `python_baseline/README.md`.
-2. Open `python_baseline/assessment.py`.
-3. Implement the functions one by one.
-4. Run `python -m unittest discover -s tests -v`.
-5. Note what felt easy, confusing, or impossible without help.
+- `python_baseline/`: controlled assessment and practice area. This is where student code, reflection prompts, and small evidence-generating exercises live.
+- `tests/`: executable evidence for the baseline and follow-up practice tasks.
+- `teacher_observations/`: dated historical session notes and review updates.
+- `teacher_state/`: the current synthesized student model, teaching strategy, and next task.
+- `student_lessons/`: student-facing lesson notes for concepts that have already been taught or are being introduced.
+- `AGENTS.md`: operating rules for how the agent should ingest evidence, answer questions, and maintain the repo.
 
-## Ground Rules
+## How The Workflow Works
 
-- Treat this like a real engineering exercise, not a copy-paste exercise.
-- Use Python docs, error messages, and the tests.
-- Avoid AI help while taking the baseline, otherwise the result is useless.
-- Clean, readable code matters more than clever code.
+1. The student works on a baseline or practice task.
+2. Code, tests, failures, and reflection become raw evidence.
+3. The agent updates `teacher_state/` in place to reflect the current best model of the student.
+4. Student-facing explanations are stored in `student_lessons/` when a concept is taught.
+5. Significant events are preserved in `teacher_observations/sessions/`.
+6. Future questions such as "what can the student do?" or "what next?" start from `teacher_state/`, not from old session notes.
 
-After you attempt it, we can review your code, classify your gaps, and build the next lessons around the weak spots.
+## Cleanup Policy
+
+- Finished exercises remain in the repo as raw evidence.
+- Cleanup means removing stale references, updating tests, and keeping `teacher_state/` current.
+- Cleanup does not mean wiping completed files like `python_baseline/assessment.py`.
+
+## Start Points
+
+- For the baseline assessment: read `python_baseline/README.md`.
+- For the current student model: read `teacher_state/index.md`.
+- For the operating rules: read `AGENTS.md`.
+
+## Intent
+
+This repo is meant to support a persistent teaching process, not one-off chat help.
+
+The baseline remains a real assessment. The teaching wiki exists to interpret results and plan the next task without weakening the assessment itself.

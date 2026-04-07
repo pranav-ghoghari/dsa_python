@@ -36,6 +36,13 @@ python -m unittest discover -s tests -v
 - `3-4` functions solved: you have partial foundations and can start writing small scripts with coaching.
 - `5-6` functions solved: the basics are there, and the focus shifts to debugging, fluency, and code quality.
 
+## How This Fits Into The Repo
+
+- Work in this folder is raw evidence for the teaching record.
+- Results from this assessment should update `teacher_state/`, not the prompt itself.
+- Keep this area solution-free so it remains a real measurement of independent skill.
+- Completed files in this folder should usually stay in place as evidence; start new follow-up tasks in new files instead of clearing old ones.
+
 ## Written Reflection
 
 After the coding part, answer the prompts in `interview.md` in chat or in your own notes. That helps separate "I got lucky with syntax" from "I actually understand the concepts."
