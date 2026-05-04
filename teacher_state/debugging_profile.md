@@ -23,6 +23,9 @@
 - The student can use a control-flow warning to reason correctly about why an in-loop `return` ends the whole function.
 - The student can make a focused safety fix after feedback and then align the final logic with the exact spec on the next pass.
 - After the fix, the student can also explain the final control flow in plain English rather than only presenting the code.
+- Current useful pattern: when test data changes, reread the expected output list instead of assuming the old expected value still fits.
+- Latest evidence supports that the student can close that loop after one failing assertion: read the mismatch, correct the expected value, and rerun successfully.
+- Current useful next move: learn to distrust "all green" when a requirement was not actually asserted by the tests.
 
 ## Current Debugging Target
 

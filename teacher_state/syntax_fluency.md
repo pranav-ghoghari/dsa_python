@@ -35,6 +35,7 @@
 - Can now safely guard direct dictionary indexing with explicit key checks such as `"key" in job`.
 - Can now combine key checks, direct indexing, string equality, and numeric comparisons correctly in a small loop-and-counter task after review.
 - On a fresh transfer task, the overall guard pattern carried over correctly, but exact key spelling in string literals still needs close attention.
+- Can now initialize a missing dictionary key with `[]` and then `append(...)` grouped values under that key.
 
 ## String And Collection Patterns
 
@@ -46,5 +47,5 @@
 - Nested data traversal beyond a list of flat dictionaries
 - Larger functions with internal helper decomposition
 - Consistently idiomatic cleanup without review pressure
-- Test-file structure using `unittest`, `class`, `self`, and assertion methods
-- Importing a function from one repo file into another
+- Independent test-file structure design from a blank page without a nearby example
+- Independent cross-file import design without a nearby example

@@ -9,6 +9,7 @@
 - `work_habits.md`: effort patterns, pacing needs, helpful scaffolds, and avoidance risks.
 - `active_hypotheses.md`: current beliefs under test and the evidence that would confirm or disconfirm them.
 - `teaching_strategy.md`: current teaching approach, help level, and progression.
+- `roadmap.md`: phase-based long-term plan, milestone gates, and rough timeline.
 - `next_task.md`: exactly one concrete next task.
 - `resource_map.md`: a short list of high-value references worth using when a real gap appears.
 

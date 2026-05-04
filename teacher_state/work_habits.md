@@ -11,8 +11,10 @@
 - A visible success condition
 - Short feedback loops using tests and review
 - Concrete next steps instead of a broad backlog
+- A visible roadmap showing the current phase, the next phase, and what evidence unlocks the next level
 - A clear post-task cleanup routine that preserves finished evidence instead of wiping files
 - A short fundamentals explanation first when the next task uses a format the student has not practiced yet
+- A short primer first when the next task depends on a concept pattern that still feels new
 - A reusable lesson shelf in the repo so taught concepts can be reread without rebuilding them from chat memory
 
 ## Avoidance Risks

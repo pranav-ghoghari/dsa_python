@@ -11,8 +11,11 @@ It covers:
 - what `import` does
 - what `unittest` is
 - why there is a `class`
+- why the class inherits from `unittest.TestCase`
 - what `self` means in a test method
 - what `self.assertEqual(actual, expected)` checks
+- how the test runner finds and runs test methods
+- why test methods usually return `None`
 
 ## What A Test File Is
 
@@ -72,6 +75,12 @@ So import means:
 
 "Use code that already exists somewhere else."
 
+`import` can be used for:
+
+- your own repo files
+- Python's built-in modules such as `unittest`
+- installed third-party libraries
+
 ## What `unittest` Is
 
 `unittest` is Python's built-in testing tool.
@@ -85,6 +94,12 @@ import unittest
 ```
 
 That line brings in Python's testing tools.
+
+More precisely:
+
+- `unittest` is a module from Python's standard library
+- "standard library" means it comes with Python
+- so you do not have to install it separately
 
 ## Why There Is A `class`
 
@@ -101,6 +116,27 @@ For now, read that as:
 "This is the group of tests for `collect_retryable_job_ids`."
 
 You do not need full object-oriented programming to use this pattern yet.
+
+## Why The Class Inherits From `unittest.TestCase`
+
+This part:
+
+```python
+class CollectRetryableJobIdsTests(unittest.TestCase):
+```
+
+does two useful things:
+
+- it makes a group for related tests
+- it gives the class access to testing tools from `TestCase`
+
+Because it inherits from `unittest.TestCase`, the methods inside can use things like:
+
+- `self.assertEqual(...)`
+
+and the test runner knows:
+
+- this class contains tests
 
 ## What `self` Means
 
@@ -122,6 +158,16 @@ def test_empty_input(self) -> None:
 For now, treat `self` as:
 
 "the thing this test method uses to get access to test tools."
+
+More precisely:
+
+- when Python runs a method on an object, it passes that object in as the first argument
+- inside a test method, `self` is the current test-case object
+- that is why `self.assertEqual(...)` works
+
+You do not invent the value of `self` yourself.
+
+Python passes it in automatically when the method is called.
 
 ## What `assertEqual` Checks
 
@@ -150,6 +196,12 @@ That means:
 
 "I expect this function to return an empty list for empty input."
 
+Important detail:
+
+- `assertEqual` is not mainly used like a normal function that returns `True` or `False` for you to store
+- if the values match, the test keeps going
+- if they do not match, `unittest` marks the test as failed
+
 ## Small Full Example
 
 ```python
@@ -162,6 +214,59 @@ class CollectRetryableJobIdsTests(unittest.TestCase):
     def test_empty_input(self) -> None:
         self.assertEqual(collect_retryable_job_ids([]), [])
 ```
+
+## How The Test Runner Knows What To Run
+
+When you run:
+
+```python
+python -m unittest tests.test_collect_retryable_job_ids -v
+```
+
+`unittest` looks for:
+
+- classes that inherit from `unittest.TestCase`
+- methods whose names start with `test_`
+
+So in a class like this:
+
+```python
+class CollectRetryableJobIdsTests(unittest.TestCase):
+    def test_a(self) -> None:
+        ...
+
+    def test_b(self) -> None:
+        ...
+```
+
+both `test_a` and `test_b` will be run.
+
+That is why your file can have three test methods and all three get executed.
+
+## How To Read The Run Command
+
+Example:
+
+```bash
+python -m unittest tests.test_collect_retryable_job_ids -v
+```
+
+Read it like this:
+
+- `python`
+  starts Python
+- `-m unittest`
+  tells Python to run the standard-library module `unittest` as a program
+- `tests.test_collect_retryable_job_ids`
+  is the module path of the test file you want to run
+- `-v`
+  means verbose, so you get one output line per test
+
+Important precision:
+
+- `tests.test_collect_retryable_job_ids` is not "all unittest modules from the tests folder"
+- it is one specific test module
+- the dots act like folder/file separators in module notation
 
 ## How To Read The Example
 
@@ -177,6 +282,71 @@ Line by line:
   defines one test method
 - `self.assertEqual(collect_retryable_job_ids([]), [])`
   checks that the function result matches the expected value
+
+## Why The Parameter List Is Just `self`
+
+You asked why the method is written like this:
+
+```python
+def test_multiple_jobs(self) -> None:
+```
+
+instead of something like:
+
+```python
+def test_multiple_jobs(self, actual) -> expected:
+```
+
+The reason is:
+
+- the test runner calls the test method for you
+- it does not know what `actual` or `expected` parameters you want
+- so test methods are written with no user-supplied input parameters
+- inside the method body, you build the input, call the function, and write the expected result there
+
+Example:
+
+```python
+def test_multiple_jobs(self) -> None:
+    jobs = [
+        {"id": 1, "status": "failed", "retries_left": 1},
+        {"id": 2, "status": "completed", "retries_left": 2},
+        {"id": 3, "status": "failed", "retries_left": 4},
+    ]
+    actual = collect_retryable_job_ids(jobs)
+    expected = [1, 3]
+    self.assertEqual(actual, expected)
+```
+
+Here:
+
+- `jobs`, `actual`, and `expected` are local variables inside the test
+- they are not function parameters
+
+## Why The Return Type Is `-> None`
+
+This part:
+
+```python
+def test_multiple_jobs(self) -> None:
+```
+
+means:
+
+- this method does not return a useful value
+
+That matches how tests work.
+
+The point of a test is not to return some data to another part of your program.
+
+The point is to perform checks.
+
+So test methods usually:
+
+- set up data
+- call code
+- assert expectations
+- return nothing useful
 
 ## The Core Pattern
 
@@ -214,3 +384,4 @@ For the next step, the minimum is enough:
 - put tests inside a `TestCase` class
 - write `test_...` methods
 - use `self.assertEqual(actual, expected)`
+- remember that the runner finds `TestCase` classes and `test_...` methods automatically

@@ -117,3 +117,141 @@
 - The student asked for a `student_lessons/` folder so taught concepts can be stored in markdown and reused later.
 - Updated the teaching strategy and work-habits pages to reflect the preference for a reusable lesson shelf.
 - Updated `next_task.md` so the immediate next move is to read `student_lessons/unittest_basics.md` and explain the core concepts back.
+
+## [2026-04-07] ingest | first unittest explanation and test draft
+
+- The student explained the broad purpose of imports, `unittest`, classes, `self`, and `assertEqual`, but still showed clear uncertainty about `TestCase`, test discovery, and why test methods use `self` with `-> None`.
+- The student also wrote `tests/test_collect_retryable_job_ids.py` by adapting the lesson pattern.
+- Ran `python -m unittest tests.test_collect_retryable_job_ids -v`; all 3 tests passed.
+- Updated `student_lessons/unittest_basics.md` and `next_task.md` to focus on the remaining mechanics rather than repeating the already-understood basics.
+
+## [2026-04-07] ingest | unittest mechanics explained back
+
+- The student gave a mostly correct explanation of why tests inherit from `unittest.TestCase`, how `unittest` finds `test_` methods, why test methods use `-> None`, and why assertions live inside the method body.
+- The only remaining precision gap is that `self` refers to the current instance of the student's test class, not literally the `unittest.TestCase` class object.
+- Updated `next_task.md` from concept explanation to a small coverage revision in `tests/test_collect_retryable_job_ids.py`.
+
+## [2026-04-07] ingest | collect_retryable_job_ids test coverage revised
+
+- Reviewed the updated `tests/test_collect_retryable_job_ids.py`; it now includes the requested empty-input case and still keeps the other useful checks.
+- Ran `python -m unittest tests.test_collect_retryable_job_ids -v`; all 4 tests passed.
+- Updated `next_task.md` from test-file revision to interpreting unittest output lines.
+
+## [2026-04-07] ingest | unittest output interpreted
+
+- The student ran `python -m unittest tests.test_collect_retryable_job_ids -v` and gave a mostly correct explanation of the per-test `... ok` lines, `Ran 4 tests`, and `OK`.
+- The only real precision gap was the command path: `tests.test_collect_retryable_job_ids` is the module path for one specific test file, not "all unittest modules from the tests folder."
+- Updated `student_lessons/unittest_basics.md` with a short section on how to read the run command.
+- Updated `next_task.md` from output interpretation to a fresh small function-plus-test pair.
+
+## [2026-04-07] ingest | collect_active_usernames function-plus-test pair completed
+
+- Reviewed `python_baseline/collect_active_username.py` and `tests/test_collect_active_usernames.py`.
+- Ran `python -m unittest tests.test_collect_active_usernames -v`; all 3 tests passed.
+- The student successfully produced a fresh small function and matching test file from a blank page.
+- The remaining gap on this task is test completeness: the missing-keys test currently proves a missing `is_active` case but not a missing `username` case.
+
+## [2026-04-07] ingest | collect_active_usernames missing-key test revised but still failing
+
+- Reviewed the updated `tests/test_collect_active_usernames.py`; the missing-keys test now includes both a missing-`is_active` record and a missing-`username` record.
+- Ran `python -m unittest tests.test_collect_active_usernames -v`; `test_missing_keys` failed because the expected list still included `"nishi"` even though no valid `"nishi"` record remains in that test input.
+- Updated `next_task.md` to the exact remaining fix: align the expected output with the edited input data.
+
+## [2026-04-07] ingest | collect_active_usernames test fix completed
+
+- Rechecked `tests/test_collect_active_usernames.py` after the expected output was corrected.
+- Ran `python -m unittest tests.test_collect_active_usernames -v`; all 3 tests passed.
+- Updated `next_task.md` from test-fix cleanup to a fresh string-formatting function plus test file.
+
+## [2026-04-07] ingest | build_active_user_report blocked on string join formatting
+
+- Reviewed `python_baseline/build_active_user_report.py` and `tests/test_build_active_user_report.py`.
+- Ran `python -m unittest tests.test_build_active_user_report -v`; the empty case passed, but the other two tests failed because the built string had a trailing `", "`.
+- Added `student_lessons/joining_strings_for_reports.md` and updated the lesson index so the string-joining pattern is stored as reusable student-facing guidance.
+
+## [2026-04-07] ingest | build_active_user_report completed
+
+- Rechecked `python_baseline/build_active_user_report.py` after the switch to list collection plus `", ".join(...)`.
+- Ran `python -m unittest tests.test_build_active_user_report -v`; all 3 tests passed.
+- Updated `next_task.md` from finishing the code to explaining the `join()` formatting pattern in plain English.
+
+## [2026-04-07] ingest | join pattern explained back
+
+- The student correctly explained that repeated `+= name + ", "` leaves a trailing separator, that `", ".join(names)` fixes that, and that the empty case still needs a separate branch.
+- Updated `student_lessons/index.md` to treat `joining_strings_for_reports.md` as a taught lesson rather than a current lesson.
+- Updated `next_task.md` to a fresh formatting-transfer task using retryable job IDs.
+
+## [2026-04-07] ingest | build_retryable_job_report completed
+
+- Reviewed `python_baseline/build_retryable_job_report.py` and `tests/test_build_retryable_job_report.py`.
+- Ran `python -m unittest tests.test_build_retryable_job_report -v`; all 4 tests passed.
+- The student correctly transferred the filtering-plus-formatting pattern to numeric IDs by converting them to strings before `join()`.
+- Updated `student_lessons/joining_strings_for_reports.md` and `next_task.md` so the immediate follow-up is explaining why `join()` needs strings.
+
+## [2026-04-08] ingest | numeric join explanation completed
+
+- The student correctly explained that `join()` does not work on raw integers and that converting each integer with `str(...)` before joining fixes the problem.
+- Updated `next_task.md` from explanation to a fresh dictionary-accumulation task: `count_jobs_by_status(...)`.
+
+## [2026-04-08] ingest | count_jobs_by_status completed
+
+- Reviewed `python_baseline/count_jobs_by_status.py` and `tests/test_count_jobs_by_status.py`.
+- Ran `python -m unittest tests.test_count_jobs_by_status -v`; all 3 tests passed.
+- Added `student_lessons/counting_with_dictionaries.md` and updated the lesson index so the dictionary-counting pattern is stored as reusable guidance.
+- Updated `next_task.md` from writing the function to explaining the `dict.get(..., 0) + 1` counting pattern in plain English.
+
+## [2026-04-08] ingest | counting pattern mostly explained, empty-input reason still fuzzy
+
+- The student correctly explained that `0` is the fallback value and that `+ 1` increments the count.
+- The only remaining mismatch is the empty-input explanation: `count_jobs_by_status([])` returns `{}` because the loop never runs, not because an empty input "does not contain the status key."
+- Updated `next_task.md` to that one narrow clarification instead of moving on yet.
+
+## [2026-04-08] ingest | counting pattern explanation completed
+
+- The student corrected the empty-input explanation and tied it to the actual loop behavior: the loop never runs, so the count dictionary stays empty.
+- Updated `student_lessons/index.md` so `counting_with_dictionaries.md` is now treated as a taught lesson.
+- Updated `next_task.md` from explanation cleanup to a fresh report-building task based on dictionary counts.
+
+## [2026-04-08] ingest | build_status_summary passes tests but misses explicit sort enforcement
+
+- Reviewed `python_baseline/build_status_summary.py` and `tests/test_build_status_summary.py`.
+- Ran `python -m unittest tests.test_build_status_summary -v`; all 3 tests passed.
+- The implementation currently uses dictionary insertion order, and the tests currently happen to match that order, so the alphabetical-sort requirement is not yet explicitly enforced.
+- Updated `next_task.md` to tighten both the test and the implementation around alphabetical sorting.
+
+## [2026-04-08] ingest | build_status_summary sort enforcement completed
+
+- Rechecked `python_baseline/build_status_summary.py` and `tests/test_build_status_summary.py` after the sorting revision.
+- Ran `python -m unittest tests.test_build_status_summary -v`; all 3 tests passed.
+- The implementation now sorts explicitly with `sorted(count_jobs.items())`, and the revised test data no longer lets insertion-order output pass accidentally.
+- Updated `student_lessons/counting_with_dictionaries.md` and `next_task.md` so the next task shifts from counting/reporting to grouping IDs into dictionary lists.
+
+## [2026-04-09] ingest | group_job_ids_by_status completed
+
+- Reviewed `python_baseline/group_job_ids_by_status.py` and `tests/test_group_job_ids_by_status.py`.
+- Ran `python -m unittest tests.test_group_job_ids_by_status -v`; all 3 tests passed.
+- Updated the canonical state to reflect a fresh grouped-dictionary success, not just counting or reporting.
+- Added `student_lessons/grouping_values_in_dictionaries.md` and updated `next_task.md` so the immediate follow-up is explaining the grouped-list pattern in plain English.
+
+## [2026-04-09] process | made lesson-before-task preference explicit
+
+- The student asked that genuinely new concepts be introduced with a short lesson before the exercise, not only new artifact types.
+- Updated the root `AGENTS.md`, `teacher_state/teaching_strategy.md`, and `teacher_state/work_habits.md` to make that ordering explicit.
+
+## [2026-04-09] ingest | grouping pattern explained back
+
+- The student explained the main grouped-list dictionary pattern in plain English: lists hold the grouped IDs, first-seen empty-list initialization avoids a missing-key failure, and left-to-right `append(...)` preserves order.
+- Updated `teacher_state/next_task.md` from explanation to a small compositional report task that combines grouping, joining, and sorting.
+
+## [2026-04-09] process | clarified long-term roadmap and timeline
+
+- The student asked for the longer teaching plan, end goal, and expected timeline.
+- Updated `teacher_state/teaching_strategy.md` to preserve the staged progression from composition of known patterns to lower-scaffold debugging and then broader DSA-style tasks.
+- Updated `teacher_state/work_habits.md` to record that a visible phase-based roadmap is helpful structure for this student.
+
+## [2026-04-09] process | added canonical learning roadmap
+
+- The student asked for a markdown roadmap that can be tracked and updated over time.
+- Added `teacher_state/roadmap.md` with phase goals, lesson focus, exit signals, and rough timing.
+- Updated `teacher_state/index.md` to include the new roadmap page.
+- Rechecked that `teacher_state/next_task.md` still holds exactly one concrete immediate task.

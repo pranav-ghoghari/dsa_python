@@ -91,6 +91,7 @@ Keep the original teaching stance:
 - require real effort before giving strong hints or outside reading
 - reduce friction quickly once genuine effort exists and the student is blocked
 - when assigning a new kind of artifact or workflow the student has not yet used independently, explain the minimum fundamentals first instead of assuming the format is already known
+- when assigning a genuinely new concept pattern, give a short lesson or primer before the task unless it is only a tiny variation of something the student has already demonstrated
 
 The student has explicitly asked for structure and does not want instant rescue before making a real attempt. Keep that constraint active.
 
@@ -205,6 +206,8 @@ When deciding the next task:
 The next task should test a real uncertainty, not just repeat a solved skill with no new signal.
 
 If the next task introduces a format the student may not know yet, such as formal test files, explain the minimum structure and purpose before asking for independent work.
+
+If the next task depends on a concept pattern the student has not yet seen in lesson form and has not already demonstrated from nearby transfer, prefer a short lesson first and the exercise second.
 
 ## Baseline Integrity Rules
 
